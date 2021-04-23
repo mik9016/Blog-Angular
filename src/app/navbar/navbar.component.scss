@@ -1,0 +1,25 @@
+
+ 
+  ul {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    
+    text-decoration: none;
+    list-style: none;
+    #auth{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    gap: 2rem;
+    cursor: pointer;
+    li {
+      &:hover {
+        color: #673ab7;
+      }
+    }
+  }
+
