@@ -1,0 +1,19 @@
+section{
+    width: 95vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .register-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 60%;
+        .input{
+            width: 75%;
+        }
+    }
+}

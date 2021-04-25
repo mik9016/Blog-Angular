@@ -1,9 +1,23 @@
 <nav>
   <ul>
-    <li>Home</li>
+    <div><strong> It worked fine...</strong></div>
+    <div id="home">
+      <li routerLink="/">Home</li>
+      <li routerLink="/createpost">Create Post</li>
+      <li routerLink="/myposts">My Posts</li>
+    </div>
+
     <div id="auth">
-      <li>Login</li>
-      <li>Register</li>
+      <li class="box login">
+        <button routerLink="/login" color="primary" mat-icon-button>
+          <mat-icon>account_circle</mat-icon> Login
+        </button>
+      </li>
+      <li class="box register">
+        <button routerLink="/register" color="primary" mat-icon-button>
+          <mat-icon>people</mat-icon>Register
+        </button>
+      </li>
     </div>
   </ul>
 </nav>

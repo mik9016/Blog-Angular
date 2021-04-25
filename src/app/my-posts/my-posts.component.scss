@@ -1,0 +1,17 @@
+@import '../utils.scss'; 
+#wrapper{
+height: 100%;
+}
+.header{
+    text-align: center;
+    font-family: $mainFont;
+}
+
+.articles{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    text-align: center;
+    margin: 1rem;
+    gap: 2rem;
+}
