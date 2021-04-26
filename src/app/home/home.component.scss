@@ -6,10 +6,25 @@
 }
 
 .articles{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-    text-align: center;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr;
+    // justify-items: center;
+    // text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 1rem;
     gap: 2rem;
 }
+
+.post-card {
+    max-width: 45vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+  
+  }

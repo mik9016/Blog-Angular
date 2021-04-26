@@ -2,11 +2,16 @@
   <h1 class="title">It worked fine..</h1>
   <h3 class="subtitle">My journey through programming</h3>
 </header>
-<section class="articles">
-    <blog-post></blog-post>
-    <blog-post></blog-post>
-    <blog-post></blog-post>
-    <blog-post></blog-post>
-    <blog-post></blog-post>
-    <blog-post></blog-post>
+<section class="articles" *ngFor="let post of posts | async">
+  <mat-card class="post-card">
+    <img mat-card-image src="{{ post.photo }}" alt="Post photo" />
+    <mat-card-content>
+      <mat-card-title>{{ post.title }}</mat-card-title>
+      <mat-card-subtitle>{{ post.subtitle }}</mat-card-subtitle>
+      <p>{{ post.text }}</p>
+    </mat-card-content>
+    <button mat-raised-button color="primary" [routerLink]="['/post',post._id]">
+      Read
+    </button>
+  </mat-card>
 </section>

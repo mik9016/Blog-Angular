@@ -1,0 +1,17 @@
+<section class="wrapper" *ngIf="singlePost | async as blog">
+  <header>
+    <h1>{{blog.title}}</h1>
+   <h3>{{blog.subtitle}}</h3> 
+    <img src="{{blog.photo}}" alt="pic" />
+  </header>
+  <main >
+    <h3>{{blog.subtitle}}</h3>
+    <p>{{blog.text}}</p>
+
+    <div class="returnBtn">
+      <button routerLink="/home" color="primary" mat-icon-button>
+        <mat-icon>keyboard_return</mat-icon>Back
+      </button>
+    </div>
+  </main>
+</section>

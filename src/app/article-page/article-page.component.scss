@@ -1,0 +1,34 @@
+@import '../utils.scss';
+
+.wrapper{
+    font-family: $mainFont;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    header{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img{
+            height: 70vh;
+            
+        }
+    }
+
+    main{
+   
+        width: 60vw;
+        // .card{
+        //     margin: 2rem;
+        //     width: 40vw;
+        // }
+        .returnBtn{
+            text-align: center;
+        }
+  
+    }
+}

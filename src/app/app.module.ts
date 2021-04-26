@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -11,6 +12,7 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { CreatePostComponent } from "./create-post/create-post.component";
 import { MyPostsComponent } from "./my-posts/my-posts.component";
+import { ArticlePageComponent } from './article-page/article-page.component';
 
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
@@ -20,6 +22,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
 import { Routes } from "@angular/router";
 import { FooterComponent } from "./footer/footer.component";
+import { FormsModule } from '@angular/forms';
+
 
 const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -28,6 +32,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "createpost", component: CreatePostComponent },
   { path: "myposts", component: MyPostsComponent },
+  { path: "post/:id", component: ArticlePageComponent },
 ];
 
 @NgModule({
@@ -40,7 +45,8 @@ const routes: Routes = [
     RegisterComponent,
     CreatePostComponent,
     MyPostsComponent,
-    LoginComponent
+    LoginComponent,
+    ArticlePageComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,9 @@ const routes: Routes = [
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule,
     RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
