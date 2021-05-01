@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from "../blog.service";
 import { ActivatedRoute } from '@angular/router';
-import {BlogPost} from '../blog';
+import {BlogPost,MyBlogPost} from '../blog';
 
 @Component({
   selector: 'blog-article-page',
@@ -10,13 +10,15 @@ import {BlogPost} from '../blog';
 })
 export class ArticlePageComponent implements OnInit {
   public postId = this.activatedRoute.snapshot.params.id;
-  public singlePost: Promise<BlogPost> = this.BlogService.getSinglePost(this.postId);
+  public singlePost: Promise<MyBlogPost> = this.BlogService.getMySinglePost(this.postId);
+
  
 
   constructor(private activatedRoute: ActivatedRoute,private BlogService:BlogService) { }
 
   ngOnInit(): void {
-
+    this.singlePost;
+    console.log(this.singlePost)
   }
 
 }

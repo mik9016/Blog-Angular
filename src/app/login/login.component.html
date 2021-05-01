@@ -1,15 +1,17 @@
 <section>
+   
     <mat-card class="login-card">
         <mat-card-title>Login</mat-card-title>
         <mat-form-field class="input">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" type="email" [(ngModel)]="email">
+            <input  autocomplete="off" matInput placeholder="Email"  type="email" [(ngModel)]="email">
         </mat-form-field>
         <mat-form-field class="input">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Password" type="password" [(ngModel)]="password">
+            <input autocomplete="off" matInput placeholder="Password" type="password" [(ngModel)]="password">
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="getLoginData()">Login</button>
+        <button mat-raised-button color="primary" (click)="getLoginData();postLoginData(loginData);">Login</button>
         <p>Dont't have an account? <a routerLink="/register">Register</a></p>
     </mat-card>
+
 </section>

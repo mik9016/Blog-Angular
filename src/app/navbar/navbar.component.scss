@@ -7,7 +7,9 @@ nav {
   position: sticky;
   top: 0;
   z-index: 1;
- 
+ #logo{
+   cursor: pointer;
+ }
   ul {
     width: 95vw;
     font-size: 1.5rem;

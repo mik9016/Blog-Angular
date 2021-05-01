@@ -2,9 +2,18 @@
   <header class="header">
     <h1 class="title">My Posts</h1>
   </header>
+  <hr>
   <section class="articles">
-    <blog-post></blog-post>
-    <blog-post></blog-post>
-    <blog-post></blog-post>
+    <mat-card class="post-card" *ngFor="let post of posts |async">
+      <img mat-card-image src="{{ post.photo }}" alt="Post photo" />
+      <mat-card-content>
+        <mat-card-title>{{ post.mainTitle }}</mat-card-title>
+        <mat-card-subtitle>{{ post.mainSubtitle }}</mat-card-subtitle>
+        <p>{{ post.paragraphs[0].paragraph.title }}</p>
+      </mat-card-content>
+      <button mat-raised-button color="primary" [routerLink]="['/myposts',post._id]">
+        Read
+      </button>
+    </mat-card>
   </section>
 </section>

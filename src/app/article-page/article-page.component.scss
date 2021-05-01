@@ -1,13 +1,14 @@
 @import '../utils.scss';
 
 .wrapper{
+
     font-family: $mainFont;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 5vh;
+    margin-top: 30vh;
     header{
         display: flex;
         flex-direction: column;

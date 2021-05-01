@@ -1,39 +1,45 @@
 <section>
-  <mat-card class="register-card">
-    <mat-card-title>Register</mat-card-title>
-    <mat-form-field class="input">
-      <mat-label>Name</mat-label>
-      <input
-        matInput
-        placeholder="Name"
-        type="text"
-        [(ngModel)]="name"
-        autocomplete="off"
-      />
-    </mat-form-field>
-    <mat-form-field class="input">
-      <mat-label>Email</mat-label>
-      <input
-        matInput
-        placeholder="Email"
-        type="email"
-        [(ngModel)]="email"
-        autocomplete="off"
-      />
-    </mat-form-field>
-    <mat-form-field class="input">
-      <mat-label>Password</mat-label>
-      <input
-        matInput
-        placeholder="Password"
-        type="password"
-        [(ngModel)]="password"
-        autocomplete="off"
-      />
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="getRegisteredUserData()">
-      Register
-    </button>
-    <p>Already have an account? <a routerLink="/login">Login</a></p>
-  </mat-card>
+
+    <mat-card class="register-card">
+      <mat-card-title>Register</mat-card-title>
+      <mat-form-field class="input">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="Name"
+          type="text"
+          [(ngModel)]="name"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="Email"
+          type="email"
+          [(ngModel)]="email"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          placeholder="Password"
+          type="password"
+          [(ngModel)]="password"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="getRegisteredUserData(); postRegisterData(registerUserData)"
+      >
+        Register
+      </button>
+      <p>Already have an account? <a routerLink="/login">Login</a></p>
+    </mat-card>
+
 </section>

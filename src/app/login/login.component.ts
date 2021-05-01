@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { BlogService } from "../blog.service";
 
  
 @Component({
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     userEmail:"",
     userPassword:""
   }
-  constructor() { }
+  constructor(private BlogService: BlogService) { }
  
   ngOnInit(): void {
   }
@@ -22,7 +22,13 @@ export class LoginComponent implements OnInit {
   getLoginData(){
       this.loginData.userEmail = this.email;
       this.loginData.userPassword = this.password;
-      console.log(this.loginData);
+      
+  }
+
+  postLoginData(loginData){  
+   
+    this.BlogService.postUserLoginData(loginData).then(res =>console.log(res));
+    
   }
 
 }

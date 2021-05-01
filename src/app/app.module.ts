@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "createpost", component: CreatePostComponent },
   { path: "myposts", component: MyPostsComponent },
+  { path: "myposts/:id", component: ArticlePageComponent},
   { path: "post/:id", component: ArticlePageComponent },
 ];
 

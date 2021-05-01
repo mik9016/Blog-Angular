@@ -1,4 +1,5 @@
 <section class="wrapper">
+  <!-- Create Card -->
   <div class="creator">
     <mat-card class="creator-card">
       <mat-card-title>Upload Picture</mat-card-title>
@@ -8,24 +9,45 @@
         <p>Upload Picture</p>
       </div>
       <div class="input-group">
-        <mat-card-title>Create Title</mat-card-title>
+        <mat-card-title>Create Main Title</mat-card-title>
         <mat-form-field class="input">
           <mat-label>Title</mat-label>
-          <input matInput placeholder="Title" type="text" />
+          <input
+            matInput
+            placeholder="Main Title"
+            type="text"
+            [(ngModel)]="title"
+          />
         </mat-form-field>
-        <button color="primary" mat-icon-button>
-          <mat-icon>add</mat-icon> Add
-        </button>
       </div>
       <div class="input-group">
-        <mat-card-title>Create Subtitle</mat-card-title>
+        <mat-card-title>Create Main Subtitle</mat-card-title>
         <mat-form-field class="input">
           <mat-label>Subtitle</mat-label>
-          <input matInput placeholder="Subtitle" type="text" />
+          <input
+            matInput
+            placeholder="Main Subtitle"
+            type="text"
+            [(ngModel)]="subTitle"
+          />
         </mat-form-field>
-        <button color="primary" mat-icon-button>
-          <mat-icon>add</mat-icon> Add
-        </button>
+      </div>
+      <button mat-raised-button color="primary" (click)="createPost()">
+        Add
+      </button>
+    </mat-card>
+    <mat-card class="creator-card-paragraph">
+      <div class="input-group">
+        <mat-card-title>Create Title</mat-card-title>
+        <mat-form-field class="input">
+          <input
+            type="text"
+            matInput
+            placeholder="Title"
+            type="text"
+            [(ngModel)]="paragraphTitle"
+          />
+        </mat-form-field>
       </div>
       <div class="input-group">
         <mat-card-title>Create Paragraph</mat-card-title>
@@ -36,17 +58,29 @@
             placeholder="Paragraph"
             type="text"
             rows="1"
+            [(ngModel)]="paragraphtext"
           ></textarea>
         </mat-form-field>
-        <button color="primary" mat-icon-button>
-          <mat-icon>add</mat-icon> Add
-        </button>
       </div>
+      <button mat-raised-button color="primary" (click)="createParagraph()">
+        Add Paragraph
+      </button>
     </mat-card>
+    <button mat-raised-button color="primary" (click)="sendNewPost(postElements)">Save</button>
   </div>
+  <!-- Preview Card -->
   <div class="preview">
     <mat-card class="preview-card">
       <mat-card-title>Preview</mat-card-title>
+      <hr>
+      <div *ngFor="let element of postElements">
+        <mat-card-title>{{ element.mainTitle }}</mat-card-title>
+        <mat-card-subtitle>{{ element.mainSubtitle }}</mat-card-subtitle>
+        <mat-card-content *ngFor="let elem of element.paragraphs">
+          <mat-card-title>{{elem.paragraph.title}}</mat-card-title>
+          <p>{{elem.paragraph.text}}</p>
+        </mat-card-content>
+      </div>
     </mat-card>
   </div>
 </section>
