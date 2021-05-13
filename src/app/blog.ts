@@ -1,3 +1,5 @@
+import { EmailValidator, MinLengthValidator } from "@angular/forms"
+
 export interface BlogPost{
     id:number,
     photo:string,
@@ -9,8 +11,8 @@ export interface BlogPost{
 
 export interface MyBlogPost{
     id:number,
-    photo:string,
-    paragraphs: Array<ParagraphsList>,
+    photo:File,
+    mainText: String,
     mainTitle: string,
     mainSubtitle: string,
     date:Date
@@ -18,7 +20,7 @@ export interface MyBlogPost{
 }
 
 export interface LoginData{
-    login:string,
+    email:string,
     password:string
 }
 
@@ -29,14 +31,20 @@ export interface RegisterData{
 }
 
 export interface NewPost{
+    author: string,
     mainTitle: string,
     mainSubtitle: string,
-    photo: string,
-    paragraphs: Array<ParagraphsList>,
+    photo: File,
+    mainText: String,
 }
 export interface ParagraphsList{
     paragraph: {
         title: string,
         text: string
     },
+}
+
+export interface TestPost{
+    someText: String,
+    image: File
 }

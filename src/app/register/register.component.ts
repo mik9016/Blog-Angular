@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BlogService} from '../blog.service';
-
+import { Form, FormBuilder, FormGroup, FormArray, FormControl, Validators } from "@angular/forms";
+import { RegisterData } from '../blog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'blog-register',
@@ -8,27 +10,26 @@ import {BlogService} from '../blog.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  name:string="";
-  email:string="";
-  password:string="";
+  registerForm: FormGroup;
 
-  registerUserData= {
-    userName:"",
-    userEmail:"",
-    userPassword:""
-  }
-  constructor(private BlogService:BlogService) { }
+ 
+  constructor(private BlogService:BlogService,private formBuilder: FormBuilder,private router: Router) { }
 
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      name: new FormControl(null,[Validators.required, Validators.minLength(2),Validators.maxLength(50)]),
+      email:new FormControl(null, [Validators.required, Validators.email]),
+      password:new FormControl(null, [Validators.required,Validators.minLength(3)])
+    })
   }
   getRegisteredUserData(){
-    this.registerUserData.userName = this.name;
-    this.registerUserData.userEmail = this.email;
-    this.registerUserData.userPassword = this.password;
-    console.log(this.registerUserData);
+  
   }
 
-  postRegisterData(registerData){
-    return this.BlogService.postUserRegisterData(registerData).then(res=>{console.log(res)});
+  postRegisterData(){
+    const registerUser:RegisterData = this.registerForm.getRawValue();
+    this.BlogService.postUserRegisterData(registerUser).then(res=>{console.log(res)});
+    this.registerForm.reset();
+    this.router.navigate(['/login']);
   }
 }

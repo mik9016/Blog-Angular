@@ -1,6 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { ParagraphsList, NewPost } from "../blog";
-import {CreatePostService} from '../create-post.service';
+import { CreatePostService } from "../create-post.service";
+import {
+  Form,
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormControl,
+  Validators,
+} from "@angular/forms";
+import { BlogService } from "../blog.service";
 
 @Component({
   selector: "blog-create-post",
@@ -8,44 +17,55 @@ import {CreatePostService} from '../create-post.service';
   styleUrls: ["./create-post.component.scss"],
 })
 export class CreatePostComponent implements OnInit {
-  title: string = "";
-  subTitle: string = "";
-  text: string = "";
-  paragraphTitle: string = "";
-  paragraphtext: string = "";
-  paragraphsList: Array<ParagraphsList> = [];
-  postElements: Array<NewPost> = [];
-  
+  postBuilder: FormGroup;
+  postElements: Array<FormGroup> = [];
+  imgUrl: string = "";
 
-  constructor(private CreatePostService: CreatePostService) {}
+  selectedFile: File = null;
+  constructor(
+    private formBuilder: FormBuilder,
+    private CreatePostService: CreatePostService,
+    private BlogService: BlogService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.postBuilder = this.formBuilder.group({
+      mainTitle: "",
+      mainSubtitle: "",
+      mainText: "",
+      image: [null],
+    });
+  }
 
   createPost() {
-    if (this.postElements.length !== 0) {
-      this.postElements[0].mainTitle = this.title;
-      this.postElements[0].mainSubtitle = this.subTitle;
-      return;
+    this.postElements.push(this.postBuilder);
+  }
+
+  sendNewPost() {
+    const fd = new FormData();
+    fd.append("name", this.BlogService.registeredUserName);
+    fd.append("photo", this.postBuilder.get("image").value);
+    fd.append("mainTitle", this.postBuilder.get("mainTitle").value);
+    fd.append("mainSubtitle", this.postBuilder.get("mainSubtitle").value);
+    fd.append("mainText", this.postBuilder.get("mainText").value);
+
+    this.CreatePostService.createNewPost(fd).then((res) => console.log(res));
+  }
+
+  onFileSelected(event) {
+    // create image view in Preview card
+    if (event.target.files) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        this.imgUrl = event.target.result;
+      };
     }
-    this.postElements.push({
-      mainTitle: this.title,
-      mainSubtitle: this.subTitle,
-      photo: "../assets/comp.jpg",
-      paragraphs: this.paragraphsList,
+    //save image in formbuilder
+    const file = event.target.files[0];
+    this.postBuilder.patchValue({
+      image: file,
     });
-  }
-
-  createParagraph() {
-    this.paragraphsList.push({
-      paragraph: {
-        title: this.paragraphTitle,
-        text: this.paragraphtext,
-      },
-    });
-  }
-
-  sendNewPost(data){
-   console.log(data)
-   this.CreatePostService.createNewPost(data).then(res =>console.log(res));
+    this.postBuilder.get("image").updateValueAndValidity();
   }
 }

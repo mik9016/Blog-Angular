@@ -4,11 +4,10 @@
 </header>
 <section class="articles" *ngFor="let post of posts | async">
   <mat-card class="post-card">
-    <img mat-card-image src="{{ post.photo }}" alt="Post photo" />
-    <mat-card-content>
-      <mat-card-title>{{ post.title }}</mat-card-title>
-      <mat-card-subtitle>{{ post.subtitle }}</mat-card-subtitle>
-      <p>{{ post.text }}</p>
+    <img mat-card-image src="{{url + post.photo }}" alt="Post photo" />
+    <mat-card-content class="card-content">
+      <mat-card-title>{{ post.mainTitle }}</mat-card-title>
+      <mat-card-subtitle>{{ post.mainSubtitle }}</mat-card-subtitle>
     </mat-card-content>
     <button mat-raised-button color="primary" [routerLink]="['/post',post._id]">
       Read

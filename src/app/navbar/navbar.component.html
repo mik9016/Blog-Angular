@@ -2,20 +2,25 @@
   <ul>
     <div id="logo"><strong routerLink="/"> It worked fine...</strong></div>
     <div id="home">
-      <li routerLink="/">Home</li>
-      <li routerLink="/createpost">Create Post</li>
-      <li routerLink="/myposts">My Posts</li>
+      <li routerLink="/" *ngIf="userIsAuthenticated">Home</li>
+      <li routerLink="/createpost" *ngIf="userIsAuthenticated">Create Post</li>
+      <li routerLink="/myposts" *ngIf="userIsAuthenticated">My Posts</li>
     </div>
 
     <div id="auth">
-      <li class="box login">
+      <li class="box login" *ngIf="!userIsAuthenticated">
         <button routerLink="/login" color="primary" mat-icon-button>
           <mat-icon>account_circle</mat-icon> Login
         </button>
       </li>
-      <li class="box register">
+      <li class="box register" *ngIf="!userIsAuthenticated">
         <button routerLink="/register" color="primary" mat-icon-button>
           <mat-icon>people</mat-icon>Register
+        </button>
+      </li>
+      <li class="box register" *ngIf="userIsAuthenticated">
+        <button  color="primary" mat-icon-button (click)="onLogout()">
+          <mat-icon>logout</mat-icon>Logout
         </button>
       </li>
     </div>

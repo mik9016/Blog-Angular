@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from "../blog.service";
+import {  FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
+import {LoginData} from '../blog';
+import { Router } from '@angular/router';
 
  
 @Component({
@@ -8,27 +11,35 @@ import { BlogService } from "../blog.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  email:string = "";
-  password:string = "";
-  loginData = {
-    userEmail:"",
-    userPassword:""
-  }
-  constructor(private BlogService: BlogService) { }
+  loginForm: FormGroup;
+  isLoggedInMode: boolean = true;
+  isLoading = false;
+
+  
+
+  constructor(private BlogService: BlogService,private formBuilder: FormBuilder, private router:Router) { }
  
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email:new FormControl(null, [Validators.required, Validators.email]),
+      password:new FormControl(null, [Validators.required,Validators.minLength(3)])
+    })
   }
 
-  getLoginData(){
-      this.loginData.userEmail = this.email;
-      this.loginData.userPassword = this.password;
-      
-  }
 
-  postLoginData(loginData){  
-   
-    this.BlogService.postUserLoginData(loginData).then(res =>console.log(res));
-    
+  onSwichMode(){
+    this.isLoggedInMode = !this.isLoggedInMode;
+  }
+  postLoginData(){  
+    this.isLoading = true;
+    const user:LoginData = this.loginForm.getRawValue();
+
+    this.BlogService.postUserLoginData(user);
+    this.onSwichMode();
+    this.loginForm.reset();
+    this.isLoading = false;
+    this.router.navigate(['/']);
+  
   }
 
 }

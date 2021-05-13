@@ -10,6 +10,8 @@ import {BlogService} from '../blog.service';
 export class MyPostsComponent implements OnInit {
   
   public posts = this.BlogService.getMyPosts();
+  private url = "http://localhost:4000/";
+  public loggedUser: string;
 
   constructor(private BlogService: BlogService) { }
 
@@ -17,8 +19,9 @@ export class MyPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts;
-    console.log(this.posts);
+    this.loggedUser = this.BlogService.registeredUserName;
   }
+
 
   getPosts(){
     this.BlogService.getMyPosts().then(res => {console.log(res)});

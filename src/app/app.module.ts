@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -14,8 +14,10 @@ import { CreatePostComponent } from "./create-post/create-post.component";
 import { MyPostsComponent } from "./my-posts/my-posts.component";
 import { ArticlePageComponent } from './article-page/article-page.component';
 
+
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -23,6 +25,9 @@ import { MatCardModule } from "@angular/material/card";
 import { Routes } from "@angular/router";
 import { FooterComponent } from "./footer/footer.component";
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from "@angular/forms";
+import { AuthInterceptor } from "./auth-interceptor";
+
 
 
 const routes: Routes = [
@@ -34,6 +39,7 @@ const routes: Routes = [
   { path: "myposts", component: MyPostsComponent },
   { path: "myposts/:id", component: ArticlePageComponent},
   { path: "post/:id", component: ArticlePageComponent },
+  
 ];
 
 @NgModule({
@@ -47,7 +53,8 @@ const routes: Routes = [
     CreatePostComponent,
     MyPostsComponent,
     LoginComponent,
-    ArticlePageComponent
+    ArticlePageComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -57,12 +64,14 @@ const routes: Routes = [
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
+    MatProgressSpinnerModule,
     MatInputModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

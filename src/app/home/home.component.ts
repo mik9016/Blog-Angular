@@ -8,7 +8,8 @@ import { BlogService } from "../blog.service";
 })
 export class HomeComponent implements OnInit {
  
-  public posts = this.BlogService.getPosts();
+  private url = "http://localhost:4000/";
+  public posts = this.BlogService.getMyPosts();
 
   constructor(private BlogService: BlogService) {}
 

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { BlogService } from '../blog.service';
 
 
 @Component({
@@ -6,11 +9,25 @@ import { Component, OnInit } from '@angular/core';
   templateUrl:'./navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
-
-  constructor() { }
+export class NavbarComponent implements OnInit, OnDestroy {
+  userIsAuthenticated = false;
+  private authListenerSubs: Subscription;
+  constructor(private BlogService: BlogService,private router: Router) { }
 
   ngOnInit(): void {
+    this.authListenerSubs = this.BlogService.getAuthStatusListener().subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    } );
+  }
+
+  ngOnDestroy(): void{
+    this.authListenerSubs.unsubscribe();
+  }
+
+  onLogout(){
+    this.BlogService.logout();
+    this.userIsAuthenticated = false;
+    this.router.navigate(['/']);
   }
 
 }
