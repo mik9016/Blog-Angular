@@ -2,7 +2,7 @@
   <header class="header">
     <h1 class="title">My Posts</h1>
   </header>
-  <hr />
+
   <section class="articles" *ngFor="let post of posts | async">
     <mat-card class="post-card" *ngIf="post.author === loggedUser">
       <img
@@ -15,12 +15,21 @@
         <mat-card-title>{{ post.mainTitle }}</mat-card-title>
         <mat-card-subtitle>{{ post.mainSubtitle }}</mat-card-subtitle>
       </mat-card-content>
+
       <button
         mat-raised-button
         color="primary"
         [routerLink]="['/myposts', post._id]"
       >
         Read
+      </button>
+      <button
+        id="delete-btn"
+        mat-raised-button
+        color="warn"
+        (click)="onDeleteItem(post._id)"
+      >
+        Delete
       </button>
     </mat-card>
   </section>

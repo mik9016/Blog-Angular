@@ -22,11 +22,15 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatListModule } from "@angular/material/list";
 import { Routes } from "@angular/router";
 import { FooterComponent } from "./footer/footer.component";
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from "@angular/forms";
 import { AuthInterceptor } from "./auth-interceptor";
+import { AuthGuard } from "./auth.guard";
 
 
 
@@ -35,8 +39,8 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "createpost", component: CreatePostComponent },
-  { path: "myposts", component: MyPostsComponent },
+  { path: "createpost", component: CreatePostComponent, canActivate:[AuthGuard] },
+  { path: "myposts", component: MyPostsComponent, canActivate:[AuthGuard] },
   { path: "myposts/:id", component: ArticlePageComponent},
   { path: "post/:id", component: ArticlePageComponent },
   
@@ -65,13 +69,17 @@ const routes: Routes = [
     MatCardModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
     MatInputModule,
     FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi: true}],
+  exports:[MatSidenavModule,MatToolbarModule],
+  providers: [{provide: HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi: true},AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

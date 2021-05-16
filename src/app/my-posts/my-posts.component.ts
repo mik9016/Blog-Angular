@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import {BlogService} from '../blog.service';
 
 
@@ -12,6 +12,7 @@ export class MyPostsComponent implements OnInit {
   public posts = this.BlogService.getMyPosts();
   private url = "http://localhost:4000/";
   public loggedUser: string;
+  public postId;
 
   constructor(private BlogService: BlogService) { }
 
@@ -19,11 +20,27 @@ export class MyPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts;
-    this.loggedUser = this.BlogService.registeredUserName;
+    this.loggedUser = localStorage.getItem('userName');
+    
   }
+
+ 
 
 
   getPosts(){
-    this.BlogService.getMyPosts().then(res => {console.log(res)});
+   return this.BlogService.getMyPosts();
+  }
+
+  onDeleteItem(id){
+   
+    this.BlogService.deleteMySinglePost(id).then(res => {
+      console.log(this.posts);
+      this.posts = this.getPosts();
+    
+      
+    
+    
+    });
+ 
   }
 }

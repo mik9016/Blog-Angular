@@ -1,15 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { ParagraphsList, NewPost } from "../blog";
 import { CreatePostService } from "../create-post.service";
-import {
-  Form,
-  FormBuilder,
-  FormGroup,
-  FormArray,
-  FormControl,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { BlogService } from "../blog.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "blog-create-post",
@@ -25,7 +18,8 @@ export class CreatePostComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private CreatePostService: CreatePostService,
-    private BlogService: BlogService
+    private BlogService: BlogService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,13 +37,15 @@ export class CreatePostComponent implements OnInit {
 
   sendNewPost() {
     const fd = new FormData();
-    fd.append("name", this.BlogService.registeredUserName);
+    fd.append("name", localStorage.getItem('userName'));
     fd.append("photo", this.postBuilder.get("image").value);
     fd.append("mainTitle", this.postBuilder.get("mainTitle").value);
     fd.append("mainSubtitle", this.postBuilder.get("mainSubtitle").value);
     fd.append("mainText", this.postBuilder.get("mainText").value);
 
-    this.CreatePostService.createNewPost(fd).then((res) => console.log(res));
+    this.CreatePostService.createNewPost(fd).then((res) => {console.log(res)
+      this.router.navigate(["/myposts"]);});
+    
   }
 
   onFileSelected(event) {

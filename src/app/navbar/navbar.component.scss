@@ -1,15 +1,18 @@
 @import "../utils.scss";
-
+#menu {
+  display: none;
+}
 nav {
   display: grid;
   background-color: white;
   width: 99vw;
   position: sticky;
-  top: 0;
-  z-index: 1;
- #logo{
-   cursor: pointer;
- }
+  // top: 0;
+  // z-index: 1;
+
+  #logo {
+    cursor: pointer;
+  }
   ul {
     width: 95vw;
     font-size: 1.5rem;
@@ -49,5 +52,58 @@ nav {
     }
 
     gap: 2rem;
+  }
+}
+
+@media (max-width: 959px) {
+  nav {
+    ul {
+      display: flex;
+      flex-direction: column;
+    }
+    .closed {
+      #home,
+      #logo,
+      #auth {
+        display: none;
+      }
+    }
+
+    .open {
+      height: fit-content;
+
+      #logo {
+        display: none;
+      }
+      #home {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #auth {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+
+        .register {
+          text-align: center;
+        }
+      }
+    }
+  }
+  .mobile {
+    margin-bottom: 5vh;
+    width: 80vw;
+    width: 100%;
+    padding: 0;
+    margin: 1vw;
+  }
+  #menu {
+    display: flex;
+    margin: 4%;
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 16%;
   }
 }

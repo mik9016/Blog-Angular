@@ -10,11 +10,18 @@ import { BlogService } from '../blog.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  userIsAuthenticated = false;
+  userIsAuthenticated:boolean = false;
   private authListenerSubs: Subscription;
+  public menuIsActive: boolean = false;
+
+
   constructor(private BlogService: BlogService,private router: Router) { }
 
+
+
   ngOnInit(): void {
+    this.userIsAuthenticated = this.BlogService.getIsAuth();
+    
     this.authListenerSubs = this.BlogService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     } );
@@ -29,5 +36,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.userIsAuthenticated = false;
     this.router.navigate(['/']);
   }
+
+  toggleMenu(){
+    this.menuIsActive = !this.menuIsActive;
+    console.log('isActive: ' + this.menuIsActive);
+  }
+
+
 
 }

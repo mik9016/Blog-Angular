@@ -1,35 +1,36 @@
-@import '../utils.scss';
+@import "../utils.scss";
 
-.wrapper{
-
-    font-family: $mainFont;
-    height: 100vh;
+.wrapper {
+  font-family: $mainFont;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  header {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30vh;
-    header{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        img{
-            height: 70vh;
-            
-        }
+    img {
+      height: fit-content;
+      width: 70%;
     }
+  }
 
-    main{
-   
-        width: 60vw;
-        // .card{
-        //     margin: 2rem;
-        //     width: 40vw;
-        // }
-        .returnBtn{
-            text-align: center;
-        }
-  
-    }
+  main {
+    width: 60vw;
+  }
+  .returnBtn {
+    text-align: center;
+    width: 80%;
+
+  }
+}
+
+@media(max-width: 959px){
+  img {
+    height: fit-content;
+    width: 90%;
+  }
 }

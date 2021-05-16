@@ -29,3 +29,16 @@ section {
   
 
 }
+
+@media (max-width: 959px){
+  section{
+    form{
+      justify-content: start;
+      .register-card {
+        margin-top: 8vh;
+        width: 100%;
+      }
+    }
+
+  }
+}

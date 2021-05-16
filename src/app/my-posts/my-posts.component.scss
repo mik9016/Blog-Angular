@@ -1,20 +1,38 @@
-@import '../utils.scss'; 
-#wrapper{
-height: 100%;
+@import "../utils.scss";
+#wrapper {
+  height: 100%;
+  width: 100%;
 }
-.header{
-    text-align: center;
-    font-family: $mainFont;
+.header {
+  text-align: center;
+  font-family: $mainFont;
 }
 
-.articles{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-    text-align: center;
-    margin: 1rem;
-    gap: 2rem;
-    .card-image{
-        height: 32vh;
-    }
+.articles {
+ 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+ 
 }
+.post-card {
+    margin: 1rem;
+    max-width: 45vw;
+    text-align: center;
+
+    #delete-btn{
+        margin: 10px;
+    }
+  }
+
+
+
+  @media (max-width:959px){
+  
+    .post-card {
+      max-width: 100%;
+    }
+  
+  }

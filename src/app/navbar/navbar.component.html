@@ -1,5 +1,6 @@
+<mat-icon id="menu" (click)="toggleMenu()">menu</mat-icon>
 <nav>
-  <ul>
+  <ul class="mobile" [ngClass]="menuIsActive ? 'open' : 'closed'">
     <div id="logo"><strong routerLink="/"> It worked fine...</strong></div>
     <div id="home">
       <li routerLink="/" *ngIf="userIsAuthenticated">Home</li>
@@ -19,7 +20,7 @@
         </button>
       </li>
       <li class="box register" *ngIf="userIsAuthenticated">
-        <button  color="primary" mat-icon-button (click)="onLogout()">
+        <button color="primary" mat-icon-button (click)="onLogout()">
           <mat-icon>logout</mat-icon>Logout
         </button>
       </li>

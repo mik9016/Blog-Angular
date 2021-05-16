@@ -2,14 +2,15 @@
   <header>
     <h1>{{ blog.mainTitle }}</h1>
     <h3>{{ blog.mainSubtitle }}</h3>
-    <img src="{{url + blog.photo }}" alt="pic" />
+    <img src="{{ url + blog.photo }}" alt="pic" />
   </header>
-  <main >
+  <main>
     <p>{{ blog.mainText }}</p>
   </main>
   <div class="returnBtn">
-    <button color="primary" mat-icon-button (click)="back()">
+    <button id="return-btn" color="primary" mat-icon-button (click)="back()">
       <mat-icon>keyboard_return</mat-icon>Back
     </button>
+ 
   </div>
 </section>

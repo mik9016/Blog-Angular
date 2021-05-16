@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   private url = "http://localhost:4000/";
   public posts = this.BlogService.getMyPosts();
 
+
   constructor(private BlogService: BlogService) {}
 
   ngOnInit(): void {
