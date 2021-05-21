@@ -13,6 +13,7 @@ import { RegisterComponent } from "./register/register.component";
 import { CreatePostComponent } from "./create-post/create-post.component";
 import { MyPostsComponent } from "./my-posts/my-posts.component";
 import { ArticlePageComponent } from './article-page/article-page.component';
+import { OopsComponent } from '../app/oops/oops.component';
 
 
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: "myposts", component: MyPostsComponent, canActivate:[AuthGuard] },
   { path: "myposts/:id", component: ArticlePageComponent},
   { path: "post/:id", component: ArticlePageComponent },
+  { path: "**", component: OopsComponent }
   
 ];
 

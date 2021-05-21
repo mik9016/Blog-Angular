@@ -13,6 +13,7 @@ export class CreatePostComponent implements OnInit {
   postBuilder: FormGroup;
   postElements: Array<FormGroup> = [];
   imgUrl: string = "";
+ 
 
   selectedFile: File = null;
   constructor(
@@ -32,20 +33,28 @@ export class CreatePostComponent implements OnInit {
   }
 
   createPost() {
-    this.postElements.push(this.postBuilder);
+    const form = this.postBuilder.getRawValue();
+    if (
+      form.mainTitle.length > 0 &&
+      form.mainSubtitle.length > 0 &&
+      form.mainText.length > 0
+    ) {
+      this.postElements.push(this.postBuilder);
+    }
   }
 
   sendNewPost() {
     const fd = new FormData();
-    fd.append("name", localStorage.getItem('userName'));
+    fd.append("name", localStorage.getItem("userName"));
     fd.append("photo", this.postBuilder.get("image").value);
     fd.append("mainTitle", this.postBuilder.get("mainTitle").value);
     fd.append("mainSubtitle", this.postBuilder.get("mainSubtitle").value);
     fd.append("mainText", this.postBuilder.get("mainText").value);
 
-    this.CreatePostService.createNewPost(fd).then((res) => {console.log(res)
-      this.router.navigate(["/myposts"]);});
-    
+    this.CreatePostService.createNewPost(fd).then((res) => {
+      console.log(res);
+      this.router.navigate(["/myposts"]);
+    });
   }
 
   onFileSelected(event) {
@@ -64,4 +73,6 @@ export class CreatePostComponent implements OnInit {
     });
     this.postBuilder.get("image").updateValueAndValidity();
   }
+
+  
 }

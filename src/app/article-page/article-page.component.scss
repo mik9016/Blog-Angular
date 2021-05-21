@@ -3,15 +3,9 @@
 .wrapper {
   font-family: $mainFont;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flexCenter;
   header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flexCenter;
     img {
       height: fit-content;
       width: 70%;
@@ -24,11 +18,10 @@
   .returnBtn {
     text-align: center;
     width: 80%;
-
   }
 }
 
-@media(max-width: 959px){
+@media (max-width: 959px) {
   img {
     height: fit-content;
     width: 90%;

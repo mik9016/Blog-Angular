@@ -3,3 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 // $mainFont: "Orelega One";
 $mainFont:"Poppins";
+
+@mixin flexCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -7,8 +7,6 @@ nav {
   background-color: white;
   width: 99vw;
   position: sticky;
-  // top: 0;
-  // z-index: 1;
 
   #logo {
     cursor: pointer;
@@ -76,10 +74,7 @@ nav {
         display: none;
       }
       #home {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        @include flexCenter;
       }
       #auth {
         display: grid;
