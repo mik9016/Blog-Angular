@@ -8,7 +8,9 @@ import { BlogPost, LoginData, RegisterData, MyBlogPost } from "./blog";
   providedIn: "root",
 })
 export class BlogService {
-  private url = "http://localhost:4000/";
+  // private url = "http://localhost:4000/";
+  private url = "https://blog-backend-angular-wsb.herokuapp.com/";
+
   private token: string;
   private authStatusListener = new Subject<boolean>();
   public registeredUserName: string;
@@ -19,28 +21,36 @@ export class BlogService {
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
+  
+
   getPosts() {
+    this.isLoading = true;
     return this.httpClient.get(this.url).toPromise();
+
   }
 
   getSinglePost(id: string): Promise<BlogPost> {
+    this.isLoading = true;
     // console.log(this.url + id);
     return this.httpClient.get<BlogPost>(this.url + id).toPromise();
   }
 
   getMySinglePost(id: string): Promise<MyBlogPost> {
+    this.isLoading = true;
     return this.httpClient
       .get<MyBlogPost>(this.url + "myposts/" + id)
       .toPromise();
   }
 
   deleteMySinglePost(id: number) {
+    this.isLoading = true;
     return this.httpClient
       .delete<BlogPost>(this.url + "myposts/" + id)
       .toPromise();
   }
 
   getMyPosts() {
+    this.isLoading = true;
     return this.httpClient.get(this.url + "myposts").toPromise();
   }
 

@@ -1,0 +1,5 @@
+@import '../utils.scss'; 
+.spinner{
+  @include flexCenter;
+  z-index: 1;
+}

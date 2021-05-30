@@ -13,7 +13,7 @@ export class CreatePostComponent implements OnInit {
   postBuilder: FormGroup;
   postElements: Array<FormGroup> = [];
   imgUrl: string = "";
- 
+  public isLoading = this.BlogService.isLoading;
 
   selectedFile: File = null;
   constructor(
@@ -24,6 +24,7 @@ export class CreatePostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = false;
     this.postBuilder = this.formBuilder.group({
       mainTitle: "",
       mainSubtitle: "",
@@ -44,6 +45,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   sendNewPost() {
+    this.isLoading = true;
     const fd = new FormData();
     fd.append("name", localStorage.getItem("userName"));
     fd.append("photo", this.postBuilder.get("image").value);
@@ -74,5 +76,8 @@ export class CreatePostComponent implements OnInit {
     this.postBuilder.get("image").updateValueAndValidity();
   }
 
-  
+  async turnOffSpinner() {
+    await this.sendNewPost();
+    this.isLoading = false;
+  }
 }

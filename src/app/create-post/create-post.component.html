@@ -1,5 +1,8 @@
+<blog-spinner *ngIf="isLoading" ></blog-spinner>
+
 <section class="wrapper">
   <!-- Create Card -->
+
   <div class="creator-wrapper">
     <form
       class="creator"
@@ -61,13 +64,15 @@
             ></textarea>
           </mat-form-field>
         </div>
-        <button mat-raised-button color="primary" (click)="createPost()">
-          See Preview
-        </button>
+        <div>
+          <button mat-raised-button color="primary" (click)="createPost()">
+            See Preview
+          </button>
+          <button mat-raised-button color="accent" (click)="sendNewPost()">
+            Save Post
+          </button>
+        </div>
       </mat-card>
-      <button mat-raised-button color="primary" (click)="sendNewPost()">
-        Save
-      </button>
     </form>
   </div>
 

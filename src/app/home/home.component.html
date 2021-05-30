@@ -2,14 +2,19 @@
   <h1 class="title">It worked fine..</h1>
   <h3 class="subtitle">My journey through programming</h3>
 </header>
+<blog-spinner *ngIf="isLoading"></blog-spinner>
 <section class="articles" *ngFor="let post of posts | async">
   <mat-card class="post-card">
-    <img mat-card-image src="{{url + post.photo }}" alt="Post photo" />
+    <img mat-card-image src="{{ url + post.photo }}" alt="Post photo" />
     <mat-card-content class="card-content">
       <mat-card-title>{{ post.mainTitle }}</mat-card-title>
       <mat-card-subtitle>{{ post.mainSubtitle }}</mat-card-subtitle>
     </mat-card-content>
-    <button mat-raised-button color="primary" [routerLink]="['/post',post._id]">
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/post', post._id]"
+    >
       Read
     </button>
   </mat-card>

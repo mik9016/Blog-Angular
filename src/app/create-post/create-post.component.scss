@@ -1,4 +1,5 @@
 @import "../utils.scss";
+
 .wrapper {
   button{
     margin-top: 1rem;
@@ -43,8 +44,14 @@
           margin-right: 2rem;
         }
       }
+
+      button{
+        margin: 1rem;
+      }
     }
   }
+
+
 
   .preview {
     height: 100%;

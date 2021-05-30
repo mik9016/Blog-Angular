@@ -14,7 +14,8 @@ export class ArticlePageComponent implements OnInit {
   public singlePost: Promise<MyBlogPost> = this.BlogService.getMySinglePost(
     this.postId
   );
-  private url = "http://localhost:4000/";
+  // private url = "http://localhost:4000/";
+  private url = "https://blog-backend-angular-wsb.herokuapp.com/"
 
   constructor(
     private activatedRoute: ActivatedRoute,

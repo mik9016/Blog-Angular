@@ -26,12 +26,14 @@ import { MatCardModule } from "@angular/material/card";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatListModule } from "@angular/material/list";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { Routes } from "@angular/router";
 import { FooterComponent } from "./footer/footer.component";
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from "@angular/forms";
 import { AuthInterceptor } from "./auth-interceptor";
 import { AuthGuard } from "./auth.guard";
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
@@ -60,6 +62,7 @@ const routes: Routes = [
     MyPostsComponent,
     LoginComponent,
     ArticlePageComponent,
+    SpinnerComponent,
  
   ],
   imports: [
@@ -78,7 +81,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   exports:[MatSidenavModule,MatToolbarModule],
   providers: [{provide: HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi: true},AuthGuard],
