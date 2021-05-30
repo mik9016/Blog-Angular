@@ -1,6 +1,6 @@
 <blog-spinner *ngIf="isLoading" ></blog-spinner>
 
-<section class="wrapper">
+<section class="wrapper" *ngIf="!isLoading">
   <!-- Create Card -->
 
   <div class="creator-wrapper">
@@ -77,7 +77,7 @@
   </div>
 
   <!-- Preview Card -->
-  <div class="preview">
+  <div class="preview" *ngIf="!isLoading">
     <mat-card class="preview-card">
       <mat-card-title>Preview</mat-card-title>
       <hr />
